@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,460;0,9..144,620;1,9..144,460;1,9..144,620&family=Outfit:wght@340;460;560&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/site.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/site.css') }}?v=17">
 </head>
 <body class="{% block body_class %}{% endblock %}">
   <div class="brand-mark" aria-hidden="true">
@@ -154,7 +154,7 @@
     </form>
   </div>
 
-  <script src="{{ url_for('static', filename='js/site.js') }}?v=16"></script>
+  <script src="{{ url_for('static', filename='js/site.js') }}?v=17"></script>
   {% block scripts %}{% endblock %}
 </body>
 </html>

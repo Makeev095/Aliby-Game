@@ -209,14 +209,19 @@ function releaseBat() {
   const bat = bats.find((item) => !item.classList.contains("is-flying"));
   if (!bat || reducedMotion) return;
   const routes = ["bat-1", "bat-2", "bat-3", "bat-4"];
+  const route = routes[Math.floor(Math.random() * routes.length)];
   const seconds = 5.2 + Math.random() * 3.4;
-  bat.style.animationName = routes[Math.floor(Math.random() * routes.length)];
+  bat.classList.remove("is-flying");
   bat.style.top = (2 + Math.random() * 68) + "vh";
   bat.style.setProperty("--bat-dur", seconds + "s");
+  bat.style.setProperty("--bat-route", route);
   void bat.offsetWidth;
   bat.classList.add("is-flying");
-  wingSound(seconds, bat.style.animationName === "bat-2" || bat.style.animationName === "bat-3");
-  bat.addEventListener("animationend", () => bat.classList.remove("is-flying"), { once: true });
+  wingSound(seconds, route === "bat-2" || route === "bat-3");
+  bat.addEventListener("animationend", (event) => {
+    if (event.target !== bat) return;
+    bat.classList.remove("is-flying");
+  }, { once: true });
 }
 function queueBats() {
   if (reducedMotion) return;
@@ -224,7 +229,7 @@ function queueBats() {
   if (Math.random() > 0.4) setTimeout(releaseBat, 1100 + Math.random() * 1800);
   setTimeout(queueBats, 11000 + Math.random() * 12000);
 }
-setTimeout(queueBats, 4200);
+setTimeout(queueBats, 1600);
 
 form.addEventListener("submit", async (event) => {
   event.preventDefault();

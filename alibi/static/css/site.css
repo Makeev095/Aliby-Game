@@ -181,9 +181,11 @@ a { color: inherit; }
 .bat .wing-l { transform-origin: 100% 45%; animation: flap-l 0.16s ease-in-out infinite alternate; }
 .bat .wing-r { transform-origin: 0% 45%; animation: flap-r 0.16s ease-in-out infinite alternate; }
 .bat.is-flying {
+  animation-name: var(--bat-route, bat-1);
   animation-duration: var(--bat-dur, 6.5s);
   animation-timing-function: ease-in-out;
-  animation-fill-mode: forwards;
+  animation-fill-mode: both;
+  animation-iteration-count: 1;
 }
 @keyframes flap-l {
   from { transform: rotate(-8deg) scaleY(1); }
