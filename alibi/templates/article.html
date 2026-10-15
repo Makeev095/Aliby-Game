@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}{{ page.title }} — Алиби{% endblock %}
+{% block description %}{{ page.description }}{% endblock %}
+{% block og_title %}{{ page.title }}{% endblock %}
+{% block og_description %}{{ page.description }}{% endblock %}
+{% block body_class %}article-page{% endblock %}
+{% block content %}
+<main class="article">
+  <div class="article-copy">
+    <p class="kicker">{{ page.kicker }}</p>
+    <h1>{{ page.h1 }}</h1>
+    <p class="lead">{{ page.lead }}</p>
+    {% for paragraph in page.paragraphs %}
+    <p>{{ paragraph }}</p>
+    {% endfor %}
+  </div>
+  <aside class="article-card">
+    <img src="{{ url_for('static', filename='img/cover-toast.jpg') }}" alt="">
+    <div>
+      <p class="kicker">Дело № {{ case.number }}</p>
+      <h2>{{ case.title }}</h2>
+      <p>{{ case.place }}</p>
+      <button class="btn" type="button" data-open-table>Открыть стол</button>
+    </div>
+  </aside>
+</main>
+{% endblock %}

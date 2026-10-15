@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>{% block title %}Алиби — короткое дело на компанию{% endblock %}</title>
+  <meta name="description" content="{% block description %}Детектив на 25–40 минут. Ссылка в чат, у каждого своя роль и одна ложь. Первое дело бесплатно.{% endblock %}">
+  <meta name="theme-color" content="#0c0b09">
+  <meta property="og:title" content="{% block og_title %}Алиби{% endblock %}">
+  <meta property="og:description" content="{% block og_description %}Короткое дело на одну компанию. Первое — бесплатно.{% endblock %}">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="{{ url_for('static', filename='favicon.svg') }}" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,460;0,9..144,620;1,9..144,460;1,9..144,620&family=Outfit:wght@340;460;560&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/site.css') }}">
+</head>
+<body class="{% block body_class %}{% endblock %}">
+  <div class="brand-mark" aria-hidden="true">
+    <svg viewBox="0 0 420 460">
+      <defs>
+        <radialGradient id="wax" cx="36%" cy="30%" r="78%">
+          <stop offset="0%" stop-color="#7a2c26"/>
+          <stop offset="46%" stop-color="#5c1814"/>
+          <stop offset="100%" stop-color="#2c0c0a"/>
+        </radialGradient>
+      </defs>
+      <path fill="#3a100e" d="M214 34c58-8 112 28 136 78 22 46 34 92 8 140 16 22 28 48 2 74-24 32-72 78-132 90-16 28-48 46-66 8-58-10-112-54-128-116-16-36-28-78-2-122-22-28-12-70 24-98 38-36 92-48 158-54z"/>
+      <path fill="url(#wax)" d="M208 58c50-4 96 28 114 72 18 42 22 86 4 124 12 18 18 40-2 60-20 26-58 62-108 72-14 18-36 28-50 4-46-12-88-46-100-96-12-32-16-66 4-102-16-22-8-56 22-78 32-28 74-52 116-56z"/>
+      <ellipse cx="168" cy="132" rx="52" ry="24" fill="#e7b4a4" opacity="0.18" transform="rotate(-28 168 132)"/>
+      <ellipse cx="198" cy="214" rx="78" ry="70" fill="#1a0605" opacity="0.72"/>
+      <text x="204" y="246" text-anchor="middle" font-family="Fraunces, Times New Roman, serif" font-size="108" fill="#140403">А</text>
+      <text x="197" y="238" text-anchor="middle" font-family="Fraunces, Times New Roman, serif" font-size="108" fill="#f0d2c4" opacity="0.72">А</text>
+      <text x="214" y="292" text-anchor="middle" font-family="Outfit, sans-serif" font-size="15" letter-spacing="7" fill="#f3e6dc" opacity="0.8">АЛИБИ</text>
+      <ellipse cx="248" cy="168" rx="10" ry="16" fill="#4a1410"/>
+      <ellipse cx="132" cy="250" rx="14" ry="9" fill="#4a1410"/>
+      <ellipse cx="230" cy="318" rx="8" ry="12" fill="#3a100e"/>
+    </svg>
+  </div>
+  <div class="atmosphere" aria-hidden="true">
+    <span class="spark"></span><span class="spark"></span><span class="spark"></span><span class="spark"></span>
+    <span class="spark"></span><span class="spark"></span><span class="spark"></span><span class="spark"></span>
+    <span class="spark"></span><span class="spark"></span><span class="spark"></span><span class="spark"></span>
+    <span class="spark"></span><span class="spark"></span><span class="spark"></span><span class="spark"></span>
+    <span class="spark"></span><span class="spark"></span><span class="spark"></span><span class="spark"></span>
+    <span class="smoke"></span>
+    <span class="smoke smoke-b"></span>
+    <span class="smoke smoke-c"></span>
+    <span class="fly fly-a"><svg viewBox="0 0 40 24"><path d="M20 12 C16 3 5 1 3 8 C8 10 14 12 20 13 C14 17 7 20 5 23 C12 19 17 15 20 13 C23 15 28 19 35 23 C33 20 26 17 20 13 C26 12 32 10 37 8 C35 1 24 3 20 12Z"/></svg></span>
+    <span class="fly fly-b"><svg viewBox="0 0 40 24"><path d="M20 12 C16 3 5 1 3 8 C8 10 14 12 20 13 C14 17 7 20 5 23 C12 19 17 15 20 13 C23 15 28 19 35 23 C33 20 26 17 20 13 C26 12 32 10 37 8 C35 1 24 3 20 12Z"/></svg></span>
+    <span class="fly fly-c"><svg viewBox="0 0 40 24"><path d="M20 12 C16 3 5 1 3 8 C8 10 14 12 20 13 C14 17 7 20 5 23 C12 19 17 15 20 13 C23 15 28 19 35 23 C33 20 26 17 20 13 C26 12 32 10 37 8 C35 1 24 3 20 12Z"/></svg></span>
+    <div class="hearth">
+      <canvas class="hearth-fire" aria-hidden="true"></canvas>
+    </div>
+    <div class="bat">
+      <div class="bat-turn">
+        <svg viewBox="0 0 240 100" aria-hidden="true">
+          <g class="wing wing-l"><path d="M112 48 C100 40 70 22 36 16 C18 12 4 28 10 40 C16 36 30 46 24 58 C36 50 52 60 44 72 C60 62 86 58 112 54 Z"/></g>
+          <g class="wing wing-r"><path d="M128 48 C140 40 170 22 204 16 C222 12 236 28 230 40 C224 36 210 46 216 58 C204 50 188 60 196 72 C180 62 154 58 128 54 Z"/></g>
+          <ellipse cx="120" cy="50" rx="11" ry="16"/>
+          <circle cx="120" cy="38" r="7"/>
+          <path d="M114 34 L107 16 L118 32 Z"/>
+          <path d="M126 34 L133 16 L122 32 Z"/>
+          <circle class="eye" cx="117" cy="37" r="1.3"/>
+          <circle class="eye" cx="123" cy="37" r="1.3"/>
+        </svg>
+      </div>
+    </div>
+    <div class="bat bat-far">
+      <div class="bat-turn">
+        <svg viewBox="0 0 240 100" aria-hidden="true">
+          <g class="wing wing-l"><path d="M112 48 C100 40 70 22 36 16 C18 12 4 28 10 40 C16 36 30 46 24 58 C36 50 52 60 44 72 C60 62 86 58 112 54 Z"/></g>
+          <g class="wing wing-r"><path d="M128 48 C140 40 170 22 204 16 C222 12 236 28 230 40 C224 36 210 46 216 58 C204 50 188 60 196 72 C180 62 154 58 128 54 Z"/></g>
+          <ellipse cx="120" cy="50" rx="11" ry="16"/>
+          <circle cx="120" cy="38" r="7"/>
+          <path d="M114 34 L107 16 L118 32 Z"/>
+          <path d="M126 34 L133 16 L122 32 Z"/>
+          <circle class="eye" cx="117" cy="37" r="1.3"/>
+          <circle class="eye" cx="123" cy="37" r="1.3"/>
+        </svg>
+      </div>
+    </div>
+    <div class="bat bat-high">
+      <div class="bat-turn">
+        <svg viewBox="0 0 240 100" aria-hidden="true">
+          <g class="wing wing-l"><path d="M112 48 C100 40 70 22 36 16 C18 12 4 28 10 40 C16 36 30 46 24 58 C36 50 52 60 44 72 C60 62 86 58 112 54 Z"/></g>
+          <g class="wing wing-r"><path d="M128 48 C140 40 170 22 204 16 C222 12 236 28 230 40 C224 36 210 46 216 58 C204 50 188 60 196 72 C180 62 154 58 128 54 Z"/></g>
+          <ellipse cx="120" cy="50" rx="11" ry="16"/>
+          <circle cx="120" cy="38" r="7"/>
+          <path d="M114 34 L107 16 L118 32 Z"/>
+          <path d="M126 34 L133 16 L122 32 Z"/>
+          <circle class="eye" cx="117" cy="37" r="1.3"/>
+          <circle class="eye" cx="123" cy="37" r="1.3"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+  <div class="reaches" aria-hidden="true">
+    <div class="reach reach-right">
+      <img src="{{ url_for('static', filename='img/hand-side.png') }}" alt="">
+    </div>
+    <div class="reach reach-floor">
+      <img src="{{ url_for('static', filename='img/hand-up.png') }}" alt="">
+    </div>
+    <div class="reach reach-corner">
+      <img src="{{ url_for('static', filename='img/hand-up.png') }}" alt="">
+    </div>
+  </div>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="glow" id="glow" aria-hidden="true"></div>
+  <div class="cursor" id="cursor" aria-hidden="true"></div>
+  <div class="loader" id="loader"><span>Алиби</span><i></i></div>
+
+  <header class="nav">
+    <a class="brand" href="/">Алиби</a>
+    <nav>
+      <a href="/#delo">Дело</a>
+      <a href="/#hod">Ход</a>
+      <a href="/#kvest-dlya-kompanii">Компания</a>
+      <a href="/igry-pohozhie-na-kod-goroda">Рядом</a>
+    </nav>
+    <button class="sound" id="sound" type="button" aria-pressed="false">Звук</button>
+    <button class="btn btn-small" type="button" data-open-table>Открыть стол</button>
+  </header>
+
+  {% block content %}{% endblock %}
+
+  <footer class="footer">
+    <div>
+      <strong>Алиби</strong>
+      <p>Короткое дело на одну компанию. Говорите вслух, карты держите у себя.</p>
+    </div>
+    <div class="footer-links">
+      <a href="/detektivnaya-igra-online">Детектив онлайн</a>
+      <a href="/kvest-dlya-kompanii">Квест для компании</a>
+      <a href="/igry-pohozhie-na-kod-goroda">Похожие игры</a>
+    </div>
+  </footer>
+
+  <div class="sheet" id="table-sheet" hidden>
+    <form class="sheet-card" id="table-form">
+      <p class="kicker">Новый стол</p>
+      <h2>Как вас представить</h2>
+      <p class="muted">Имя увидят остальные. Роль придёт, когда сядут минимум трое.</p>
+      <label>
+        <span>Имя</span>
+        <input name="name" maxlength="24" autocomplete="nickname" placeholder="Алина" required>
+      </label>
+      <p class="form-error" id="table-error" hidden></p>
+      <div class="sheet-actions">
+        <button class="btn" type="submit">Сесть и открыть</button>
+        <button class="btn btn-ghost" type="button" data-close-table>Закрыть</button>
+      </div>
+    </form>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/site.js') }}?v=16"></script>
+  {% block scripts %}{% endblock %}
+</body>
+</html>

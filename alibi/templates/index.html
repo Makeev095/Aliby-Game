@@ -1,0 +1,207 @@
+{% extends "base.html" %}
+{% block body_class %}home{% endblock %}
+{% block content %}
+<main>
+  <section class="hero" id="top">
+    <div class="hero-copy" data-depth="0.15">
+      <p class="kicker">Дело № {{ case.number }} · бесплатно</p>
+      <h1>Алиби<br><em>на одну ночь</em></h1>
+      <p class="lead">Ссылка в чат. У каждого своя роль и фраза, которую нельзя подтвердить всем сразу. Через полчаса стол называет, кто забрал конверт.</p>
+      <div class="hero-actions">
+        <button class="btn" type="button" data-open-table>Открыть стол</button>
+        <a class="btn btn-ghost" href="#delo">Смотреть обложку</a>
+      </div>
+      <dl class="hero-meta">
+        <div><dt>Стол</dt><dd>3–6 человек</dd></div>
+        <div><dt>Время</dt><dd>{{ case.duration }}</dd></div>
+        <div><dt>Где</dt><dd>Телефон или ноутбук</dd></div>
+      </dl>
+      <p class="scroll-hint">Листайте дело</p>
+    </div>
+    <div class="stage" id="stage">
+      <div class="orbit"></div>
+      <div class="dossier" id="dossier">
+        <article class="paper back">
+          <span>Дело № 03</span>
+          <h2>Пустой перрон</h2>
+          <p>Ночной вокзал</p>
+        </article>
+        <article class="paper mid">
+          <span>Дело № 02</span>
+          <h2>Вторая смена</h2>
+          <p>Ночная аптека</p>
+        </article>
+        <article class="folder">
+          <header>
+            <span>Дело № 01</span>
+            <span>21:40</span>
+          </header>
+          <h2>{{ case.title }}</h2>
+          <p>{{ case.place }}. Конверт исчез между двумя отметками. Окно закрыто изнутри.</p>
+          <ul>
+            <li></li><li></li><li></li><li class="redacted"></li>
+          </ul>
+          <div class="seal"><span>Печать</span></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <div class="marquee-group">
+        <span>Роль</span><span>Ложь</span><span>Стол</span><span>Голос</span><span>Конверт</span><span>Ссылка</span>
+        <span>Роль</span><span>Ложь</span><span>Стол</span><span>Голос</span><span>Конверт</span><span>Ссылка</span>
+      </div>
+      <div class="marquee-group">
+        <span>Роль</span><span>Ложь</span><span>Стол</span><span>Голос</span><span>Конверт</span><span>Ссылка</span>
+        <span>Роль</span><span>Ложь</span><span>Стол</span><span>Голос</span><span>Конверт</span><span>Ссылка</span>
+      </div>
+    </div>
+  </div>
+
+  <section class="steps" id="hod">
+    <div class="section-head">
+      <p class="kicker">Ход</p>
+      <h2>Три движения, потом разговор.</h2>
+    </div>
+    <ol>
+      <li>
+        <img src="{{ url_for('static', filename='img/step-link.jpg') }}" alt="">
+        <span>01</span>
+        <h3>Кидаете ссылку</h3>
+        <p>Один человек открывает стол. Остальные садятся с телефона, приложение не нужно.</p>
+      </li>
+      <li>
+        <img src="{{ url_for('static', filename='img/step-card.jpg') }}" alt="">
+        <span>02</span>
+        <h3>Читаете свою карту</h3>
+        <p>Вслух уходит только короткая версия. Нижняя строка остаётся у вас.</p>
+      </li>
+      <li>
+        <img src="{{ url_for('static', filename='img/step-vote.jpg') }}" alt="">
+        <span>03</span>
+        <h3>Голосуете</h3>
+        <p>Когда версии разошлись, каждый называет, кто забрал конверт. Стол вскрывается сразу.</p>
+      </li>
+    </ol>
+  </section>
+
+  <section class="covers" id="delo">
+    <div class="section-head">
+      <p class="kicker">Обложки</p>
+      <h2>Два дела. Первое уже на столе.</h2>
+    </div>
+    <div class="tabs" role="tablist">
+      <button class="tab is-on" type="button" role="tab" aria-selected="true" data-tab="free">Дело 01 · бесплатно</button>
+      <button class="tab" type="button" role="tab" aria-selected="false" data-tab="paid">Дело 02 · 490 ₽</button>
+    </div>
+    <article class="cover is-on" data-panel="free">
+      <div class="cover-visual" data-parallax="0.2">
+        <img src="{{ url_for('static', filename='img/cover-toast.jpg') }}" alt="">
+        <p>№ 01</p>
+        <strong>{{ case.title }}</strong>
+        <em>{{ case.place }}</em>
+      </div>
+      <div class="cover-copy">
+        <p class="kicker">Открыто</p>
+        <h3>{{ case.title }}</h3>
+        <p>{{ case.brief }}</p>
+        <ul class="timeline">
+          {% for time, text in case.timeline %}
+          <li><span>{{ time }}</span>{{ text }}</li>
+          {% endfor %}
+        </ul>
+        <button class="btn" type="button" data-open-table>Сесть за это дело</button>
+      </div>
+    </article>
+    <article class="cover" data-panel="paid" hidden>
+      <div class="cover-visual locked" data-parallax="0.2">
+        <img src="{{ url_for('static', filename='img/cover-pharmacy.jpg') }}" alt="">
+        <p>№ 02</p>
+        <strong>{{ locked.title }}</strong>
+        <em>{{ locked.place }}</em>
+      </div>
+      <div class="cover-copy">
+        <p class="kicker">Закрыто до оплаты</p>
+        <h3>{{ locked.title }}</h3>
+        <p>{{ locked.brief }}</p>
+        <p class="price"><b>490 ₽</b> на всю компанию, не с человека.</p>
+        <button class="btn" type="button" disabled>Оплата подключим следующим шагом</button>
+      </div>
+    </article>
+  </section>
+
+  <section class="pin" id="roles">
+    <div class="pin-sticky">
+      <div class="section-head pin-head">
+        <p class="kicker">Стол</p>
+        <h2>Шесть мест. В игре — столько, сколько село.</h2>
+      </div>
+      <div class="pin-track" id="pin-track">
+        {% for role in case.roles %}
+        <article class="role-card">
+          <img src="{{ url_for('static', filename='img/portrait-' + role.id + '.jpg') }}" alt="">
+          <span>0{{ loop.index }}</span>
+          <h3>{{ role.name }}</h3>
+          <p>{{ role.relation }}</p>
+        </article>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <p class="kicker">Зачем это живёт в поиске</p>
+    <h2>Тот же вечер, другой масштаб.</h2>
+    <div class="band-grid">
+      <a href="/detektivnaya-igra-online">
+        <img src="{{ url_for('static', filename='img/band-call.jpg') }}" alt="">
+        <span>01</span>
+        <strong>Детектив онлайн с друзьями</strong>
+        <em>Ссылка, роли, голосование.</em>
+      </a>
+      <a href="/kvest-dlya-kompanii">
+        <img src="{{ url_for('static', filename='img/band-clock.jpg') }}" alt="">
+        <span>02</span>
+        <strong>Квест для компании</strong>
+        <em>Полчаса, без коробки и ведущего.</em>
+      </a>
+      <a href="/igry-pohozhie-na-kod-goroda">
+        <img src="{{ url_for('static', filename='img/band-table.jpg') }}" alt="">
+        <span>03</span>
+        <strong>Если мало длинного дела</strong>
+        <em>Короткий стол рядом с большим расследованием.</em>
+      </a>
+    </div>
+  </section>
+
+  <section class="faq" id="voprosy">
+    <div class="section-head">
+      <p class="kicker">Вопросы</p>
+      <h2>Перед тем как звать своих.</h2>
+    </div>
+    <div class="accordion">
+      <details open>
+        <summary>Можно сесть одному?</summary>
+        <p>Нет. Дело собирается от трёх до шести человек. Вы говорите за одним столом или в созвоне, сайт звук не передаёт.</p>
+      </details>
+      <details>
+        <summary>Что именно бесплатно?</summary>
+        <p>Первое дело, «Тихий тост», целиком. Следующая обложка стоит 490 ₽ на всю компанию. Оплату подключим отдельно, сейчас она закрыта.</p>
+      </details>
+      <details>
+        <summary>Нужно ли читать карту вслух до конца?</summary>
+        <p>Нет. Верхняя фраза — ваша версия для стола. Нижняя строка только ваша, её не зачитывают.</p>
+      </details>
+      <details>
+        <summary>Это Код города?</summary>
+        <p>Нет. Там длинное расследование на карте. Здесь одно короткое дело: сели, поговорили, проголосовали.</p>
+      </details>
+    </div>
+  </section>
+</main>
+{% endblock %}
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/home.js') }}"></script>
+{% endblock %}

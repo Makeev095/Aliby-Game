@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}Стол {{ code }} — Алиби{% endblock %}
+{% block description %}Дело «{{ case.title }}». Сядьте за стол и получите свою роль.{% endblock %}
+{% block body_class %}play-page{% endblock %}
+{% block content %}
+<main class="table" id="table" data-code="{{ code }}">
+  <section class="gate" id="gate">
+    <p class="kicker">Стол {{ code }}</p>
+    <h1>Сесть за дело<br><em>«{{ case.title }}»</em></h1>
+    <form id="join-form">
+      <label>
+        <span>Имя</span>
+        <input name="name" maxlength="24" autocomplete="nickname" placeholder="Как к вам обращаться" required>
+      </label>
+      <p class="form-error" id="join-error" hidden></p>
+      <button class="btn" type="submit">Сесть</button>
+    </form>
+  </section>
+  <section class="room" id="room" hidden>
+    <header class="room-bar">
+      <div>
+        <p class="kicker">Дело № {{ case.number }} · {{ case.place }}</p>
+        <h1 id="room-title">{{ case.title }}</h1>
+      </div>
+      <div class="room-code">
+        <span>Код стола</span>
+        <strong id="room-code">{{ code }}</strong>
+        <button class="btn btn-small btn-ghost" type="button" id="copy-link">Скопировать ссылку</button>
+      </div>
+    </header>
+    <div class="room-layout">
+      <div class="board">
+        <p id="brief" class="brief"></p>
+        <ol class="timeline" id="timeline"></ol>
+        <div class="plan" id="plan" hidden></div>
+        <div class="seats" id="seats"></div>
+        <div class="room-actions" id="room-actions"></div>
+      </div>
+      <aside class="hand" id="hand" hidden>
+        <p class="kicker">Ваша карта</p>
+        <div class="hand-card" id="hand-card"></div>
+      </aside>
+    </div>
+  </section>
+</main>
+{% endblock %}
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/play.js') }}"></script>
+{% endblock %}

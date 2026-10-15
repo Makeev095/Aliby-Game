@@ -1,0 +1,5 @@
+flask
+python-dotenv
+opencv-python-headless
+typing_inspect>=0.4,<0.5
+git+https://github.com/alexshpilkin/dvrip.git

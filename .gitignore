@@ -1,0 +1,7 @@
+.env
+go2rtc.yaml
+bin/
+__pycache__/
+*.pyc
+.venv/
+data/
